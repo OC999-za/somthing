@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>For Zothile 💌</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
@@ -29,11 +29,21 @@
         linear-gradient(160deg, #3b0a1f 0%, var(--wine) 45%, #8e1b47 100%);
       font-family: 'Cormorant Garamond', serif;
       color: var(--ink);
+      min-height: 100dvh;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: center;
       overflow-x: hidden;
-      padding: 40px 16px;
+      padding:
+        calc(32px + env(safe-area-inset-top))
+        16px
+        calc(32px + env(safe-area-inset-bottom));
+    }
+
+    /* Centres content when it fits, but lets tall content start at the top and scroll */
+    .envelope-wrap,
+    .letter {
+      margin: auto;
     }
 
     /* ---------- Floating hearts ---------- */
@@ -424,6 +434,7 @@
       setTimeout(() => {
         envelope.style.display = "none";
         letter.classList.add("show");
+        window.scrollTo(0, 0);
       }, 700);
     }
     envelope.addEventListener("click", openLetter);
